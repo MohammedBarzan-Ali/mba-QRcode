@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+:root {
+    --bg-color: #222327;
+    --nav-color: #fff;
+    --active-color: #29fd53;
+    /* Bright Green */
+    --text-color: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--bg-color);
+}
+
+.navigation {
+    position: relative;
+    width: 400px;
+    height: 70px;
+    background: var(--nav-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.navigation ul {
+    display: flex;
+    width: 350px;
+}
+
+.navigation ul li {
+    position: relative;
+    list-style: none;
+    width: 70px;
+    height: 70px;
+    z-index: 1;
+}
+
+.navigation ul li a {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+}
+
+.navigation ul li a .icon {
+    position: relative;
+    display: block;
+    line-height: 75px;
+    font-size: 1.5em;
+    text-align: center;
+    transition: 0.5s;
+    color: var(--text-color);
+}
+
+.navigation ul li.active a .icon {
+    transform: translateY(-32px);
+
+}
+
+.navigation ul li a .text {
+    position: absolute;
+    color: var(--text-color);
+    font-weight: 400;
+    font-size: 0.75em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.navigation ul li.active a .text {
+    opacity: 1;
+    transform: translateY(10px);
+}
+
+/* THE LIQUID INDICATOR */
+.indicator {
+    position: absolute;
+    top: -50%;
+    width: 70px;
+    height: 70px;
+    background: var(--active-color);
+    /* The green ball */
+    border-radius: 50%;
+    border: 6px solid var(--bg-color);
+    /* Matches body background to look like a cutout */
+    transition: 0.5s;
+}
+
+/* The "Water Blow" Effect - Left Curve */
+.indicator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -22px;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-top-right-radius: 20px;
+    box-shadow: 1px -10px 0 0 var(--bg-color);
+    /* Creates the inverted curve */
+}
+
+/* The "Water Blow" Effect - Right Curve */
+.indicator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -22px;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-top-left-radius: 20px;
+    box-shadow: -1px -10px 0 0 var(--bg-color);
+    /* Creates the inverted curve */
+}
+
+/* Movement Logic based on nth-child */
+.navigation ul li:nth-child(1).active~.indicator {
+    transform: translateX(calc(70px * 0));
+}
+
+.navigation ul li:nth-child(2).active~.indicator {
+    transform: translateX(calc(70px * 1));
+}
+
+.navigation ul li:nth-child(3).active~.indicator {
+    transform: translateX(calc(70px * 2));
+}
+
+.navigation ul li:nth-child(4).active~.indicator {
+    transform: translateX(calc(70px * 3));
+}
+
+.navigation ul li:nth-child(5).active~.indicator {
+    transform: translateX(calc(70px * 4));
+}
+
+/* Ripple Effect */
+.ripple-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.ripple {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: rgba(41, 253, 83, 0.15);
+    /* Faint active color */
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: ripple 0.6s linear;
+}
+
+@keyframes ripple {
+    100% {
+        transform: translate(-50%, -50%) scale(2.5);
+        opacity: 0;
+    }
+}
+/* Pages */
+.content {
+  position: absolute;
+  top: 80px;
+  text-align: center;
+  width: 100%;
+  color: white;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+input {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  margin-top: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background: var(--active-color);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#qrcode {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+#reader {
+  width: 300px;
+  margin: 20px auto;
+}
+/* QR Code Beautiful Box */
+#qrcode {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+#qrcode img {
+  padding: 15px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0px 5px 20px rgba(0,0,0,0.4);
+}
+/* Mobile Responsive */
+@media (max-width: 600px) {
+
+  .content {
+    top: 60px;
+    padding: 10px;
+  }
+
+  input {
+    width: 85%;
+    font-size: 16px;
+  }
+
+  button {
+    width: 80%;
+    font-size: 16px;
+  }
+
+  #reader {
+    width: 90%;
+  }
+
+  .navigation {
+    width: 95%;
+  }
+}
+/* Fix Navbar Bottom On Mobile */
+.navigation {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 350px;
+  z-index: 999;
+}
+/* Add Space So Content Doesn't Hide Behind Navbar */
+.content {
+  padding-bottom: 140px;
+}
+@media (max-width: 600px) {
+
+  .navigation {
+    width: 95%;
+    border-radius: 25px;
+  }
+
+  .content {
+    padding-bottom: 160px;
+  }
+}
