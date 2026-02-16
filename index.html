@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated QR Website</title>
+
+  <!-- Ionicons -->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- صفحات -->
+  <div class="content">
+
+    <div class="page active" id="home">
+      <h2>🏠 Home</h2>
+      <p> Welcome to my QR Code Website! <br><br>
+    Here you can easily generate QR codes for any text or link,<br>  
+    and also scan QR codes using your camera or images. <br><br>
+    Fast, simple, and mobile or pc 🚀</p>
+    </div>
+
+    <div class="page" id="generate">
+      <h2>🔲 Generate QR Code</h2>
+      <input type="text" id="qrText" placeholder="Enter text or link...">
+      <button onclick="generateQR()">Generate</button>
+      <div id="qrcode"></div>
+      <br>
+<a id="downloadBtn" download="qrcode.png" style="display:none;">
+  <button>⬇ Download QR Code</button>
+</a>
+
+    </div>
+
+    <div class="page" id="scan">
+      <h2>📷 Scan QR Code</h2>
+      <div id="reader"></div>
+      <h3 id="scanResult"></h3>
+      <br><br>
+
+<h3>🖼️ Scan QR From Image</h3>
+
+<input type="file" id="qrImage" accept="image/*">
+
+<br><br>
+
+<button onclick="scanFromImage()">Scan Image</button>
+
+    </div>
+  
+
+
+    <div class="page" id="about">
+      <h2>👤 About Me</h2>
+      <p> Hi! My name is Mohammed Barzan Ali 😄 <br>
+    I am passionate about programming and web development. <br>
+    I built this project to help people generate and scan QR codes easily. <br>
+    Thank you for visiting my website!</p>
+    </div>
+
+  </div>
+
+  <!-- Navbar (هەمان Navbar ـی تۆ) -->
+  <div class="navigation">
+    <ul>
+
+      <li class="list active" onclick="showPage('home')">
+        <a href="#">
+          <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+          <span class="text">Home</span>
+        </a>
+      </li>
+
+      <li class="list" onclick="showPage('generate')">
+        <a href="#">
+          <span class="icon"><ion-icon name="qr-code-outline"></ion-icon></span>
+          <span class="text">Generate</span>
+        </a>
+      </li>
+
+      <li class="list" onclick="showPage('scan')">
+        <a href="#">
+          <span class="icon"><ion-icon name="camera-outline"></ion-icon></span>
+          <span class="text">Scan</span>
+        </a>
+      </li>
+
+      <li class="list" onclick="showPage('about')">
+        <a href="#">
+          <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+          <span class="text">About</span>
+        </a>
+      </li>
+
+      <div class="indicator"></div>
+    </ul>
+  </div>
+
+  <!-- QR Generator -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <!-- QR Scanner -->
+  <script src="https://unpkg.com/html5-qrcode"></script>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+
+</body>
+</html>
